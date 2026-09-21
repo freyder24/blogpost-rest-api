@@ -1,0 +1,44 @@
+# Binaries / Build output
+bin/
+obj/
+artifacts/
+publish/
+out/
+*.user
+*.suo
+
+# Visual Studio / IDE
+.vs/
+.idea/
+.vscode/
+*.userprefs
+*.vsidx
+
+# User Secrets (secrets.json)
+secrets.json
+
+# .NET
+*.nupkg
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Config / connection strings (may contain secrets)
+appsettings.json
+appsettings.Development.json
+appsettings.*.local.json
+
+# OS / misc
+Thumbs.db
+Desktop.ini
+.DS_Store
