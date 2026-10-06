@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿
 using BlogPostApi.Data;
 using BlogPostApi.Domain;
 using BlogPostApi.Repositories.Interface;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogPostApi.Repositories.Implementation
@@ -28,8 +25,7 @@ namespace BlogPostApi.Repositories.Implementation
             return category;
         }
 
-       
-
+      
         public async Task<IEnumerable<Category>> GetAllCategoryAsync()
         {
             return await _dbContext.Categories.ToListAsync();

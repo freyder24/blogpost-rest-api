@@ -1,5 +1,6 @@
 ﻿using BlogPostApi.Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace BlogPostApi.Data
 {
@@ -16,5 +17,25 @@ namespace BlogPostApi.Data
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configurar las imagenes como una lista de strings serializada en JSON
+            modelBuilder.Entity<BlogPost>()
+                .Property(x => x.Images)
+                .HasConversion(
+                    images => JsonSerializer.Serialize(images, (JsonSerializerOptions?)null),
+                    images =>
+                        string.IsNullOrWhiteSpace(images)
+                            ? new List<string>()
+                            : JsonSerializer.Deserialize<List<string>>(images, (JsonSerializerOptions?)null) ?? new List<string>()
+                );
+
+
+        }
     }
+
+   
 }

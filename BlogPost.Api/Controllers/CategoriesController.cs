@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPostApi.Controllers
 {
-    // http://localhost:xxxx/api/categories
+
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -22,8 +22,8 @@ namespace BlogPostApi.Controllers
 
 
 
-        // POST: api/categories
-        // http://localhost:xxxx/api/categories
+        // POST
+        // http://{apiBaseUrl}/api/categories
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryRequestDto request)
         {
@@ -58,8 +58,8 @@ namespace BlogPostApi.Controllers
         }
 
 
-        // GET: api/categories
-        // http://localhost:xxxx/api/categories
+        // GET ALL
+        // http://{apiBaseUrl}/api/categories
         [HttpGet]
         public async Task<IActionResult> GetAllCategory()
         {
@@ -82,8 +82,8 @@ namespace BlogPostApi.Controllers
         }
 
 
-        // GET: api/categories/{id}
-        // http://localhost:xxxx/api/categories/{id}
+        // GET BY ID
+        // http://{apiBaseUrl}/api/categories/{id}
         [HttpGet]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
@@ -107,8 +107,8 @@ namespace BlogPostApi.Controllers
             return Ok(response);
         }
 
-        // GET: api/categories/{id}
-        // http://localhost:xxxx/api/categories/{id}
+        // UPDATE BY ID
+        // http://{apiBaseUrl}/api/categories/{id}
         [HttpPut]
         [Route("{id:Guid}")]
         public async Task<IActionResult> UpdateCategory([FromRoute] Guid id, [FromBody] UpdateCategoryRequestDto request)
@@ -133,7 +133,8 @@ namespace BlogPostApi.Controllers
         }
 
 
-
+        // DELETE BY ID
+        // http://{apiBaseUrl}/api/categories/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
