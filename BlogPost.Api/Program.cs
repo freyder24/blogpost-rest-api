@@ -19,6 +19,9 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//Imagenes
+builder.Services.AddHttpContextAccessor();
 // Registra el contexto de Entity Framework Core y lo configura
 // para usar SQL Server con la cadena de conexión "DefaultConnection"
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -28,6 +31,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //   Registra la implementacion concreta de ICategoryRepository para que pueda ser inyectada en los controladores
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 var app = builder.Build();
 
@@ -52,7 +56,9 @@ app.UseCors(options =>
 });
 
 app.UseAuthorization();
-
+//Imagenes: el repositorio guarda en wwwroot/Images, por eso se sirve el webroot completo.
+//Antes se servia Directory.GetCurrentDirectory()/Images (carpeta vacia) y las URLs daban 404.
+app.UseStaticFiles();
 // Enlaza cada ruta definida en los controladores ([Route], [HttpGet], etc.)
 app.MapControllers();
 

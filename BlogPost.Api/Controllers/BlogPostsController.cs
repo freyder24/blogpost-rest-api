@@ -108,7 +108,7 @@ namespace BlogPostApi.Controllers
                     FeaturedImageUrl = blogPost.FeaturedImageUrl,
                     Images = blogPost.Images,
                     ShortDescription = blogPost.ShortDescription,
-                    //Relacion con categori 
+                    //Relacion con categoria
                     Categories = blogPost.Categories.Select(x => new CategoryDto
                     {
                         Id = x.Id,

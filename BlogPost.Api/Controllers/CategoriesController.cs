@@ -2,7 +2,6 @@
 using BlogPostApi.Domain;
 using BlogPostApi.Models.Dto;
 using BlogPostApi.Repositories.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPostApi.Controllers

@@ -16,6 +16,7 @@ namespace BlogPostApi.Data
         // "BlogPosts" y "Categories"
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> BlogImages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
