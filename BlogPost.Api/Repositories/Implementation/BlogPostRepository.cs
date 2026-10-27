@@ -49,6 +49,12 @@ namespace BlogPostApi.Repositories.Implementation
             return _dbContext.BlogPosts.Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<BlogPost?> GetBlogPostBySlugAsync(string slug)
+        {
+
+            return _dbContext.BlogPosts.Include(x => x.Categories).FirstOrDefaultAsync(x => x.Slug == slug);
+        }
+
         public async Task<BlogPost?> UpdateBlogPostAsync(BlogPost blogPost)
         {
            var existingBlogPost = await _dbContext.BlogPosts.Include(x => x.Categories)

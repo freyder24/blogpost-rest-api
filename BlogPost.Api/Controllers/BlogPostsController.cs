@@ -159,6 +159,42 @@ namespace BlogPostApi.Controllers
         }
 
 
+        //GET BY SLUG
+        // http://{apiBaseUrl}/api/blogposts/{slug}
+        [HttpGet]
+        [Route("{slug}")]
+        public async Task<IActionResult> GetBlogPostBySlug([FromRoute] string slug)
+        {
+            var blogPost = await _blogPostRepository.GetBlogPostBySlugAsync(slug);
+            if (blogPost is null)
+            {
+                return NotFound();
+            }
+            var response = new BlogPostDto
+            {
+                Id = blogPost.Id,
+                Title = blogPost.Title,
+                Slug = blogPost.Slug,
+                Author = blogPost.Author,
+                Content = blogPost.Content,
+                IsVisible = blogPost.IsVisible,
+                PublishedDate = blogPost.PublishedDate,
+                FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                Images = blogPost.Images,
+                ShortDescription = blogPost.ShortDescription,
+                //Relacion con categoria
+                Categories = blogPost.Categories.Select(x => new CategoryDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    UrlHandle = x.UrlHandle,
+                    IconUrl = x.IconUrl,
+                }).ToList()
+            };
+            return Ok(response);
+        }
+
+
         //UPDATE BY ID
         // http://{apiBaseUrl}/api/blogposts/{id}
         [HttpPut]
